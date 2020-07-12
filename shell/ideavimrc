@@ -1,0 +1,28 @@
+" 设置debug为 zd
+:nnoremap zd :action Debug<CR>
+" 设置run 为 zr
+:nnoremap zr :action Run<CR>
+" zt 打开终端
+
+" 列出类成员
+:nnoremap zm :action FileStructurePopup<CR>
+
+:nnoremap zfp :action ShowFilePath<CR>
+:nnoremap zgd :action GotoDeclaration<CR>
+:nnoremap zgi :action GotoImplementation<CR>
+:nnoremap zgs :action GotoSuperMethod<CR>
+:nnoremap zgt :action GotoTest<CR>
+
+
+noremap zj gt
+noremap zk gT
+noremap zh :action Back<CR>
+noremap zl :action Forward<CR>
+noremap fs :action FileStructurePopup<CR>
+
+" ???
+let mapleader=";"
+noremap <leader>nc: action NewClass<CR>
+noremap <leader>nd: action NewDir<CR>
+noremap <leader>np: action NewPackageInfo<CR>
+noremap <leader>ns: action NewScratchFile<CR>

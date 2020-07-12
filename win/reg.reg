@@ -1,0 +1,11 @@
+﻿Windows Registry Editor Version 5.00
+
+修改控制台编码
+    \HKEY_CURRENT_USER\Console\%SystemRoot%_system32_cmd.exe    cmd
+    \HKEY_CURRENT_USER\Console\Tomcat                           Tomcat
+    修改CodePage值， 65001(十进制) UTF8
+
+
+注册应用
+    [HKEY_CLASSES_ROOT\*\shell\notepad\command]
+    @="C:\\Windows\\notepad.exe %1"

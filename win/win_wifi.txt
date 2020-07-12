@@ -1,0 +1,9 @@
+
+设置wifi
+	netsh wlan set hostednetwork mode=allow ssid=name key=password
+
+开启wifi
+	netsh wlan start hostednetwork
+
+关闭wifi
+	netsh wlan stop hostednetwork

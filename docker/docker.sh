@@ -1,26 +1,5 @@
 #! /bin/sh
 
-# sudo docker system df           # 查看docker占用空间
-# sudo docker system prune        # 删除文件
-
-# 国内源
-sudo bash -c 'cat > /etc/docker/daemon.json << EOF
-{
-  "registry-mirrors" : [
-    "http://ovfftd6p.mirror.aliyuncs.com",
-    "http://registry.docker-cn.com",
-    "http://docker.mirrors.ustc.edu.cn",
-    "http://hub-mirror.c.163.com"
-  ],
-  "insecure-registries" : [
-    "registry.docker-cn.com",
-    "docker.mirrors.ustc.edu.cn"
-  ],
-  "debug" : true,
-  "experimental" : true
-}
-EOF'
-
 # nginx
 sudo docker pull nginx:latest
 sudo docker run --name nginx -v /d/workspace/script/config/nginx.conf:/etc/nginx/nginx.conf -p80:80 -d nginx
@@ -29,6 +8,10 @@ sudo docker run --name nginx -v /d/workspace/script/config/nginx.conf:/etc/nginx
 sudo docker pull redis:latest
 sudo docker run --name redis -v /d/workspace/script/config/redis.conf:/etc/redis/redis.conf -p6379:6379 -d redis
 
+# mongo
+sudo docker run -d --name mongo -p27017:27017 --restart=always mongo --auth
+#sudo docker exec mongo mongo admin
+#db.createUser({ user:'tcb',pwd:'qw@rtyui0p',roles:[ { role:'userAdminAnyDatabase', db: 'admin'},"readWriteAnyDatabase"]});
 
 # mysql 注意：启动mysql容器后，需要重启一次方可连接成功
 sudo docker pull mysql:latest
@@ -43,23 +26,10 @@ sudo docker run --name oracle --env NLS_LANG=AMERICAN_AMERICA.UTF8 -p 1521:1521 
 # sudo docker run -d --name tracker -v ~/temp/fastdfs/tracker_data:/fastdfs/tracker/data --net=host season/fastdfs tracker
 # sudo docker run -d --name storage -v ~/temp/fastdfs/storage_data:/fastdfs/storage/data -v ~/temp/fastdfs/store_path:/fastdfs/store_path --net=host -e TRACKER_SERVER:192.168.1.11:22122 season/fastdfs storage
 
-# elasticsearch
-docker pull elasticsearch:7.6.0
-docker run -d --name es -p9200:9200 -p9300:9300 -e "discovery.type=single-node" elasticsearch:7.6.0
-docker exec -it es bash
-cd plugins/
-elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.6.0/elasticsearch-analysis-ik-7.6.0.zip
-
-# kibana
-docker pull kibana:7.6.0
-docker run -d --name kibana -p5601:5601 --link es:elasticsearch kibana:7.6.0
-
 # rabbitmq
 docker pull rabbitmq:management   # 该版本含有web管理界面 端口15672
 # 默认账号密码guest, 可以使用 -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password
 docker run -d --hostname rabbit --name rabbit -p 15672:15672 -p 5672:5672 rabbitmq:management
-
-
 
 # 重启容器
 sudo docker restart $(docker ps -aq)
@@ -79,3 +49,6 @@ sudo firewall-cmd --reload
 
 # 重启docker服务后自动启动容器
 # docker update --restart=always <CONTAINER ID>
+
+# sudo docker system df           # 查看docker占用空间
+# sudo docker system prune        # 删除文件

@@ -1,6 +1,12 @@
 #! /bin/bash
 
 # sudo timedatectl set-local-rtc true
+# ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+# hwclock --systohc
+# cat >> /etc/locale.gen <<eof
+# en_US.UTF-8 UTF-8
+# zh_CN.UTF-I UTF-8
+# eof
 
 sudo pacman-mirrors -i -c China -m rank
 sudo pacman -Syy

@@ -17,3 +17,11 @@ select partition n  # 选择EFI分区，n为EFI分区号
 set id="ebd0a0a2-b9e5-4433-87c0-68b6b72699c7"	# 设置为基本数据分区
 assign letter=X     # x为EFI分区盘符
 remove letter=X     # 删除X盘符
+
+# wifi
+@REM 设置wifi
+netsh wlan set hostednetwork mode=allow ssid=name key=password
+@REM 开启wifi
+netsh wlan start hostednetwork
+@REM 关闭wifi
+netsh wlan stop hostednetwork

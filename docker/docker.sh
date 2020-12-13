@@ -46,6 +46,7 @@ sudo firewall-cmd --reload
 
 # 显示容器相关信息
 # docker inspect 容器
+# docker history
 
 # 重启docker服务后自动启动容器
 # docker update --restart=always <CONTAINER ID>

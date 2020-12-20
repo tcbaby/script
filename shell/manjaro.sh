@@ -1,4 +1,6 @@
 #! /bin/bash
+# by tcbaby
+# for manjaro linux
 
 # sudo timedatectl set-local-rtc true
 # ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -8,8 +10,18 @@
 # zh_CN.UTF-I UTF-8
 # eof
 
-sudo pacman-mirrors -i -c China -m rank
-sudo pacman -Syy
+#sudo pacman-mirrors -i -c China -m rank
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+sudo bach -c 'cat > /etc/pacman.d/mirrorlist << EOF
+# 中科大
+Server = https://mirrors.ustc.edu.cn/manjaro/stable/$repo/$arch
+# 清华源
+Server = https://mirrors.tuna.tsinghua.edu.cn/manjaro/stable/$repo/$arch
+# 上交源
+Server = https://mirrors.sjtug.sjtu.edu.cn/manjaro/stable/$repo/$arch
+# 浙大源
+Server = https://mirrors.zju.edu.cn/manjaro/stable/$repo/$arch
+EOF'
 
 if false
     [archlinuxcn]
@@ -33,25 +45,28 @@ sudo pacman -S archlinux-keyring
 # sudo pacman-key --populate archlinux manjaro
 # sudo pacman-key --refresh-keys
 
-sudo pacman -S vim code 
-sudo pacman -S chromium proxychains typora
-# sudo pacman -S electron-ssr
+# AUR
+sudo pacman -S yay
+yay --aururl "https://aur.tuna.tsinghua.edu.cn" --save
+
+# gvim "+y +clipboard
+sudo pacman -S gvim code typora 
+
+# uget: 编辑->设置->插件, 在插件匹配顺序选择aria2
+sudo pacman -S chromium aria2 uget uget-integrator-chromium
+
+# proxy
+sudo pacman -S electron-ssr
+sudo pacman -S proxychains 
 sudo sed -i 's/^#\(dynamic_chain\)/\1/' /etc/proxychains.conf
 sudo sed -i 's/^socks4.*/socks5  127.0.0.1 1080/' /etc/proxychains.conf
 
-sudo pacman -S firewalld net-tools nodejs npm
+# devtool
+sudo pacman -S firewalld net-tools base-devel
 sudo systemctl enable --now firewalld
 
-# tldr命令提示工具
-sudo npm i -g nrm && nrm use cnpm
-sudo npm i -g tldr &
-
-# 开发工具
-sudo pacman -S base-devel
-
-# 搜狗输入法, 设置完成需要重启
-# fcitx-im不行了,搜狗输入法不支持新版的fcitx-qt了
-sudo pacman -S fcitx-lilydjwg-git fcitx-configtool fcitx-sogoupinyin
+# 搜狗输入法, 安装完成后需要注销重新登录
+yay -S fcitx-lilydjwg-git fcitx-configtool fcitx-sogoupinyin
 cat > ~/.xprofile << EOF
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
@@ -63,11 +78,9 @@ sudo pacman -S vlc flameshot
 
 sudo pacman -S baidunetdisk-bin netease-cloud-music
 
-# uget: 编辑->设置->插件, 在插件匹配顺序选择aria2
-sudo pacman -S aria2 uget uget-integrator-chromium
-
 # wechat, qq
-sudo pacman -S electronic-wechat deepin.com.qq.office
+sudo pacman -S electronic-wechat 
+sudo pacman -S deepin.com.qq.office
 
 # 安装wine ...
 # sudo pacman -S wine wine-mono

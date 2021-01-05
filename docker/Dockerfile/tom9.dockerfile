@@ -30,6 +30,7 @@ ENV JAVA_PATH ${JAVA_HOME}/bin:${JRE_HOME}/bin
 # tomcat
 ENV CATALINA_HOME /usr/local/tomcat
 ENV JPDA_ADDRESS 0.0.0.0:8000
+ENV JAVA_OPTS -server -Xms1g -Xmx2g -Djava.awt.headless=true -XX:+UseConcMarkSweepGC  -XX:+UseParNewGC  -XX:+CMSParallelRemarkEnabled  -Xloggc:/tmp/gc.log  -XX:GCLogFileSize=10M -XX:NumberOfGCLogFiles=10 -XX:+UseGCLogFileRotation -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -XX:+DisableExplicitGC -verbose:gc -Dfile.encoding=UTF-8
 # path
 ENV PATH $PATH:${JAVA_PATH}:$CATALINA_HOME/bin
 

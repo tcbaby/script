@@ -1,5 +1,5 @@
 #! /bin/sh
-# system: cnetos
+# system: centos
 # author: tcbaby
 
 sudo yum remove docker*

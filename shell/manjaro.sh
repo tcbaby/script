@@ -73,6 +73,9 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
 EOF
 
+# rdp
+sudo pacman -S freerdp krdc
+
 # vlc： [/](+/-)倍速播放； n/p：却换； f全屏
 sudo pacman -S vlc flameshot
 

@@ -16,3 +16,7 @@ if false; then
 fi
 
 systemctl start create_ap
+
+
+# err: Failed to initialize lock error
+# sudo rm /tmp/create_ap.all.lock

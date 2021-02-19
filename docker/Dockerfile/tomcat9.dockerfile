@@ -8,7 +8,7 @@ RUN cd /usr/local; \
     yum -y install wget; \
     wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" \
         http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz; \
-    wget https://mirror.bit.edu.cn/apache/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz; \
+    wget https://apache.website-solution.net/tomcat/tomcat-9/v9.0.43/bin/apache-tomcat-9.0.43.tar.gz; \
     tar zxvf jdk-8u131-linux-x64.tar.gz; \
     tar zxvf apache-tomcat-9.0.41.tar.gz; \
     mv jdk1.8.0_131 jdk1.8; \
@@ -17,6 +17,7 @@ RUN cd /usr/local; \
     cd tomcat; \
     mv webapps webapps.bak; \
     mkdir webapps; \
+    mkdir -p logs/app; \
     chmod -R 7777 logs webapps
 
 WORKDIR /usr/local/tomcat

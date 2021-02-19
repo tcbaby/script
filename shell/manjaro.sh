@@ -65,8 +65,10 @@ sudo sed -i 's/^socks4.*/socks5  127.0.0.1 1080/' /etc/proxychains.conf
 sudo pacman -S firewalld net-tools base-devel
 sudo systemctl enable --now firewalld
 
-# 搜狗输入法, 安装完成后需要注销重新登录
-yay -S fcitx-lilydjwg-git fcitx-configtool fcitx-sogoupinyin
+# 安装小企鹅输入法, 安装完成后需要注销重新登录
+yay -S fcitx-lilydjwg-git 
+pacman -S fcitx-googlepinyin fcitx-cloudpinyin fcitx-configtool
+#yay -S fcitx-sogoupinyin
 cat > ~/.xprofile << EOF
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
@@ -83,12 +85,7 @@ sudo pacman -S baidunetdisk-bin netease-cloud-music
 
 # wechat, qq
 sudo pacman -S electronic-wechat 
-sudo pacman -S deepin.com.qq.office
-
-# 安装wine ...
-# sudo pacman -S wine wine-mono
-# 打开wine设置
-# env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" winecfg
+yay -S  com.qq.tim.spark
 
 # 安装wps
 sudo pacman -S wps-office ttf-wps-fonts

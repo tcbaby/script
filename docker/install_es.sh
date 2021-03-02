@@ -23,6 +23,7 @@ sudo docker run -d --name es -p9200:9200 -p9300:9300 -e "discovery.type=single-n
 # kibana
 sudo docker pull kibana:${version}
 sudo docker run -d --name kibana -p5601:5601 --link es:elasticsearch kibana:${version}
+# sudo docker run -d --name kibana_t -p7602:5601 -e ELASTICSEARCH_URL=http://10.0.0.53:7201 kibana:5.2.0
 
 # ik plugin
 #elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v${version}/elasticsearch-analysis-ik-${version}.zip

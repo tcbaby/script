@@ -49,21 +49,31 @@ sudo pacman -S archlinux-keyring
 sudo pacman -S yay
 yay --aururl "https://aur.tuna.tsinghua.edu.cn" --save
 
-# gvim "+y +clipboard
-sudo pacman -S gvim code typora 
+# devtool
+sudo pacman -S net-tools base-devel cmake extra-cmake-modules
 
-# uget: 编辑->设置->插件, 在插件匹配顺序选择aria2
-sudo pacman -S chromium aria2 uget uget-integrator-chromium
+# krunner-vscodeprojects JetBrainsRunner lib
+# sudo pacman -S packagekit-qt5 libnotify kcmutils kio
+# curl https://raw.githubusercontent.com/alex1701c/krunner-vscodeprojects/master/install.sh | bash
+# curl https://raw.githubusercontent.com/alex1701c/JetBrainsRunner/master/install.sh | bash
+
+# firewalld
+sudo pacman -S firewalld
+sudo systemctl enable --now firewalld
 
 # proxy
-sudo pacman -S electron-ssr
-sudo pacman -S proxychains 
+sudo pacman -S proxychains electron-ssr
 sudo sed -i 's/^#\(dynamic_chain\)/\1/' /etc/proxychains.conf
 sudo sed -i 's/^socks4.*/socks5  127.0.0.1 1080/' /etc/proxychains.conf
 
-# devtool
-sudo pacman -S firewalld net-tools base-devel
-sudo systemctl enable --now firewalld
+# editor
+# gvim "+y +clipboard
+# sudo pacman -S gvim
+sudo pacman -S code typora 
+
+# uget: 编辑->设置->插件, 在插件匹配顺序选择aria2
+# sudo pacman -S chromium aria2 uget uget-integrator-chromium
+sudo pacman -S google-chrome aria2 uget uget-integrator-chrome
 
 # 安装小企鹅输入法, 安装完成后需要注销重新登录
 yay -S fcitx-lilydjwg-git 

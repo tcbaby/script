@@ -49,6 +49,10 @@ sudo pacman -S archlinux-keyring
 sudo pacman -S yay
 yay --aururl "https://aur.tuna.tsinghua.edu.cn" --save
 
+# xflux 自动改变显示屏的颜色
+pacman -S xflux
+xflux -l 29.59 -g 106.54
+
 # devtool
 sudo pacman -S net-tools base-devel cmake extra-cmake-modules
 

@@ -6,7 +6,7 @@ sudo docker run --name nginx -v /d/workspace/script/config/nginx.conf:/etc/nginx
 
 # redis
 sudo docker pull redis:latest
-sudo docker run --name redis -v /d/workspace/script/config/redis.conf:/etc/redis/redis.conf -p6379:6379 -d redis
+sudo docker run --name redis -v /d/workspace/script/config/redis.conf:/etc/redis/redis.conf -p6379:6379 -d redis redis-server /etc/redis/redis.conf
 
 # mongo
 sudo docker run -d --name mongo -p27017:27017 --restart=always mongo --auth

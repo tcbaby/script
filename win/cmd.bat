@@ -1,4 +1,7 @@
 
+# 修改账号密码
+net user 用户名 密码
+net user 用户名 *   # 回车 输入密码
 
 # 查看进程
 tasklist | findstr cmd

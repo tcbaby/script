@@ -1,9 +1,10 @@
 #!/bin/sh
-# by tcbaby
-# for manjaro 
+# author: tcbaby
 
-sudo pacman -S nodejs npm
-npm config set registry https://registry.npm.taobao.org
+wget https://nodejs.org/dist/v16.14.2/node-v16.14.2-linux-x64.tar.xz
+tar Jxvf node-v16.14.2-linux-x64.tar.xz && mv node-v16.14.2-linux-x64 /usr/local/nodejs
+ln -sf /usr/local/nodejs/bin/* /usr/bin/
+rm -f node-v16.14.2-linux-x64.tar.xz
 
 # glolbal dir
 mkdir ~/.npm-global

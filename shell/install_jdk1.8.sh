@@ -6,6 +6,7 @@ wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-
 tar zxvf jdk-8u131-linux-x64.tar.gz
 mkdir /usr/local/java
 mv jdk1.8.0_131/ /usr/local/java/jdk1.8
+rm -f jdk-8u131-linux-x64.tar.gz
 
 # jdk1.8
 sed -i '$a \
